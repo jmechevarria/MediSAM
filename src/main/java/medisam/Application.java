@@ -1,4 +1,4 @@
-package hello;
+package medisam;
 
 //import nz.net.ultraq.thymeleaf.LayoutDialect;
 //import nz.net.ultraq.thymeleaf.decorators.strategies.GroupingStrategy;
