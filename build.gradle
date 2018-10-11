@@ -1,0 +1,94 @@
+
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
+        classpath "com.github.ben-manes:gradle-versions-plugin:0.20.0"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+bootJar {
+    baseName = 'gs-consuming-rest'
+    version =  '0.1.0'
+}
+
+task openUrlInBrowser {
+    doLast {
+        java.awt.Desktop.desktop.browse "http://localhost:8080/gtvg".toURI()
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+//configurations {
+//    doc {
+//        transitive false
+//    }
+//}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('mysql:mysql-connector-java')
+
+    compile("org.springframework.boot:spring-boot-starter-security")
+    //    compile("org.springframework.boot:spring-boot-starter-security:2.0.5.RELEASE:sources")
+    //    compile("org.springframework.boot:spring-boot-starter-security:2.0.5.RELEASE:javadoc")
+
+    //    //SCAFFOLDING
+    //    // https://mvnrepository.com/artifact/com.google.guava/guava
+    //    compile group: 'com.google.guava', name: 'guava', version: '26.0-jre'
+    //    // https://mvnrepository.com/artifact/org.easytesting/fest-assert
+    //    testCompile group: 'org.easytesting', name: 'fest-assert', version: '1.4'
+    //    // https://mvnrepository.com/artifact/org.easytesting/fest-assert-core
+    //    testCompile group: 'org.easytesting', name: 'fest-assert-core', version: '2.0M10'
+
+    //    compile("br.com.netodevel:spring-scaffold-cli:0.0.1-SNAPSHOT")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect")
+    compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4')
+
+    compile("org.springframework.boot:spring-boot-devtools")
+
+    compile("com.fasterxml.jackson.core:jackson-databind")
+
+    compile("org.webjars:webjars-locator:0.34")
+    compile("org.webjars:bootstrap:4.1.3") {
+        exclude group: 'org.webjars.npm'
+        exclude module: 'popper.js'
+    }
+
+    compile("org.webjars:jquery:3.3.1-1")
+
+    compile("javax.servlet:jstl")
+
+    testCompile("junit:junit")
+}
+
+//javadoc {
+//    source configurations.doc.collect { zipTree(it) }
+//    include '**/*.java'
+//    options.addStringOption('Xdoclint:none', '-quiet')
+//}
+
+javadoc {
+    source = sourceSets.main.allJava
+    classpath = configurations.compile
+}
+
+if (!hasProperty('mainClass')) {
+    ext.mainClass = 'hello.Application'
+}

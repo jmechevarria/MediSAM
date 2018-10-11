@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+        <!--<link rel="icon" th:href="@{/images/favicon.ico}">-->
+        <link rel="icon" href="/images/favicon.ico">
+    </head>
+    <body>
+        <p>
+            URI: <h3 th:text="${uri}"></h3>
+        User: <h3 th:text="${user}"></h3>
+        Roles: <h3 th:text="${roles}"></h3>
+        <a href="/admin/">/admin/</a><br/>
+        <a href="/users/">/users/</a><br/>
+        <a href="/others/">/others/</a><br/>
+        <a href="/quests/">/quests/</a><br/><br/>
+    </p>
+    <form th:action="@{/logout}" method="post">
+        <input type="hidden"
+               name="${_csrf.parameterName}"
+               value="${_csrf.token}"/>
+        <input type="submit" value="Logout">
+    </form>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>JSP Page</title>
+        <!--<link th:rel="icon" th:href="@{/favicon.ico}">-->
+        <!--Bootstrap core CSS-->
+        <link type="text/css" th:rel='stylesheet' th:href='@{/webjars/bootstrap/css/bootstrap.min.css}'>
+    </head>
+    <body>
+        <!--        <header layout:fragment="header">
+                    <h1>Layout header placeholder</h1>
+                </header>-->
+        <nav layout:fragment="header" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="#">MediSAM</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/}">Inicio <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li sec:authorize="hasAuthority('ADMIN')" class="nav-item active">
+                        <a class="nav-link" th:href="@{/admin}">Administraci&oacute;n <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item dropdown d">
+                        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                </ul>
+                <!--                <form class="form-inline my-2 my-lg-0">
+                                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                </form>-->
+                <nav class="my-2 my-md-0 mr-md-3">
+                    <a sec:authorize="isAuthenticated()" class="p-2 text-light" th:href="@{/profile}">Welcome, <span sec:authentication="name"></span></a>
+                </nav>
+                <!--                <div th:switch="${#authorization.expression('isAuthenticated()')}">
+                                    <div th:case="true">
+                                        <div th:switch="${#authorization.expression('hasAuthority(''ADMIN'')')}">
+                                            <div th:case="true">ADMIN.</div>
+                                            <div th:case="false">USER.</div>
+                                        </div>
+                                    </div>
+                                    <div th:case="false">ANON.</div>
+                                </div>
+                                <div sec:authorize="isAuthenticated()" th:text='${#authentication.getPrincipal().getUsername()}'></div>
+                                <div th:if="${#authentication.getPrincipal().getUsername()}=='jm'" th:text='${#authentication.getPrincipal().getUsername()}'></div>
+                                <div th:text='${#authentication.getPrincipal().getAuthorities()[0]}'></div>-->
+
+                <!--                <p th:each="role : ${#authentication.getPrincipal().getAuthorities()}"
+                                   th:text="${role.getAuthority()}">
+                                </p>-->
+                <form th:action="@{/logout}" method="post">
+                    <input sec:authorize="isAuthenticated()" class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Log Out"/>
+                    <input sec:authorize="isAnonymous()" class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Log in"/>
+                </form>
+            </div>
+        </nav>
+
+        <section layout:fragment="content">
+            <h1>Layout content placeholder</h1>
+        </section>
+        <footer layout:fragment="footer">
+            <h1>Layout footer placeholder</h1>
+        </footer>
+        <script type="text/javascript" th:src='@{/webjars/jquery/jquery.min.js}'></script>
+        <script type="text/javascript" th:src='@{/webjars/bootstrap/js/bootstrap.min.js}'></script>
+        <script type="text/javascript">
+//            console.log($('footer:first').addClass('class'));
+        </script>
+    </body>
+</html>
