@@ -90,5 +90,5 @@ javadoc {
 }
 
 if (!hasProperty('mainClass')) {
-    ext.mainClass = 'hello.Application'
+    ext.mainClass = 'medisam.Application'
 }
