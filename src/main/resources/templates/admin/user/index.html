@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout.html}" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" >
+    <head>
+        <title>Interfaz de administraci&oacute;n</title>
+        <link type="text/css" th:rel='stylesheet' th:href="@{/css/jumbotron.css}">
+    </head>
+    <body>
+        <section>
+            <main role="main" layout:fragment="content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <a th:href="@{/medicine/add}">Nueva medicina</a>
+                        <table class="table table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre gen&eacute;rico</th>
+                                    <th scope="col">Nombre comercial</th>
+                                    <th scope="col">Handle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </main>
+        </section>
+
+        <footer th:class="'pt-4 ' + 'my-md-5 ' + 'pt-md-5 ' + 'border-top ' + 'text-center '" layout:fragment="footer">MediSAM - ITO Orizaba</footer>
+    </body>
+</html>

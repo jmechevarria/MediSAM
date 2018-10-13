@@ -38,9 +38,6 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 import org.thymeleaf.templateresolver.UrlTemplateResolver;
 
 @SpringBootApplication //includes @Configuration, @EnableAutoConfiguration, @EnableWebMvc and @ComponentScan
-//@ComponentScan(basePackages = {"medisam.controller", "medisam.config", "medisam.entity"})
-//@EntityScan({"medisam.entity"})
-//@EnableJpaRepositories(basePackages = {"medisam.entity"})
 
 public class Application {
 
