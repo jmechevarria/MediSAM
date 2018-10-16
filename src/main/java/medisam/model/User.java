@@ -17,8 +17,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import medisam.validation.PasswordsMatch;
+import medisam.validation.ValidEmail;
 
 @Entity // This tells Hibernate to make a table out of this class
+@PasswordsMatch(message = "Las contraseñas deben coincidir")
 public class User {
 
     @Id
@@ -34,8 +37,9 @@ public class User {
     private String lastname;
     private String lastname2;
 
-    @NotNull
+    @ValidEmail(message = "Dirección de correo no válida")
     @NotEmpty
+    @NotNull
     private String email;
 
     @NotNull
@@ -45,6 +49,10 @@ public class User {
     @NotNull
     @NotEmpty
     private String password;
+
+    @NotNull
+    @NotEmpty
+    private String passwordConfirm;
     private boolean enabled;
 
     @ManyToMany(targetEntity = Role.class)
@@ -107,6 +115,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
     }
 
     public boolean isEnabled() {

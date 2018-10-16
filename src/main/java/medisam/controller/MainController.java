@@ -16,6 +16,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -59,7 +60,17 @@ public class MainController {
         ModelAndView mv;
         if (bindingResult.hasErrors()) {
             mv = new ModelAndView("admin/user/new", "user", user);
+            System.out.println(bindingResult.getFieldError("name"));
+            System.out.println(bindingResult.getFieldError("lastname"));
+            System.out.println(bindingResult.getFieldError("lastname2"));
+            System.out.println(bindingResult.getFieldError("username"));
+            System.out.println(bindingResult.getFieldError("password"));
+            System.out.println((bindingResult.getAllErrors().get(0)).getClass());
+            System.out.println((bindingResult.getAllErrors().get(0)).getDefaultMessage());
+            System.out.println((bindingResult.getAllErrors().get(0)).getObjectName());
+//            System.out.println(((FieldError) bindingResult.getAllErrors().get(0)).getField());
             return mv;
+
 //            return "admin/user/new";
         }
 
@@ -71,7 +82,7 @@ public class MainController {
 
 //        securityService.autologin(user.getUsername(), user.getPasswordConfirm());
 //        return "redirect:/admin";
-        mv = new ModelAndView("admin");
+        mv = new ModelAndView("redirect:/admin");
         return mv;
     }
 

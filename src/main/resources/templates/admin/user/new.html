@@ -7,53 +7,68 @@
 <body>
     <div layout:fragment="info-management">
         <h1>Nuevo usuario</h1>
-        <form th:action="@{/admin/user/add}" th:object="${user}" method="post" class="needs-validation" novalidate>
+        <form th:action="@{/admin/user/add}" th:object="${user}" method="post">
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                    <label for="name">Nombre</label>
-                    <!--<input type="text" class="form-control" id="validationDefault01" placeholder="First name" value="Mark" required>-->
-                    <input th:field="*{name}" type="text" class="form-control" id="name" placeholder="Nombre" required>
+                    <!--<input type="text" class="form-control" id="validationDefault01" placeholder="First name" value="Mark">-->
+                    <input th:field="*{name}" type="text" class="form-control" th:classappend="${#fields.hasErrors('name')} ? is-invalid"
+                           id="name" placeholder="Nombre">
                     <div class="invalid-feedback">
-                        <p th:each="error: ${#fields.errors('name')}" th:text="${error}">Dato no válido</p>
+                        <p th:text="${#fields.hasErrors('name') ? #fields.errors('name')[0]:''}">Dato no v&aacute;lido</p>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
-                    <label for="lastname">Primer apellido</label>
-                    <input th:field="*{lastname}" type="text" class="form-control" id="lastname" placeholder="Primer apellido" required>
+                    <input th:field="*{lastname}" type="text" class="form-control" th:classappend="${#fields.hasErrors('lastname')} ? is-invalid"
+                           id="lastname" placeholder="Primer apellido">
                     <div class="invalid-feedback">
-                        <p th:each="error: ${#fields.errors('lastname')}" th:text="${error}">Dato no válido</p>
+                        <p th:text="${#fields.hasErrors('lastname') ? #fields.errors('lastname')[0]:''}">Dato no v&aacute;lido</p>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
-                    <label for="lastname2">Segundo apellido</label>
-                    <input th:field="*{lastname2}" type="text" class="form-control" id="lastname2" placeholder="Segundo apellido">
+                    <input th:field="*{lastname2}" type="text" class="form-control" th:classappend="${#fields.hasErrors('lastname2')} ? is-invalid"
+                           id="lastname2" placeholder="Segundo apellido">
                     <div class="invalid-feedback">
-                        <p th:each="error: ${#fields.errors('lastname2')}" th:text="${error}">Dato no válido</p>
+                        <p th:text="${#fields.hasErrors('lastname2') ? #fields.errors('lastname2')[0]:''}">Dato no v&aacute;lido</p>
                     </div>
                 </div>
-                <div class="col-md-6 mb-3">
-                    <label for="username">Usuario</label>
+                <div class="col-md-12 mb-3">
+                    <label for="email">Correo</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="username-prepend">@</span>
+                            <span class="input-group-text" id="email-prepend">@</span>
                         </div>
-                        <input th:field="*{username}" type="text" class="form-control" id="username" placeholder="Usuario" aria-describedby="username-prepend" required>
+                        <input th:field="*{email}" type="email" class="form-control" th:classappend="${#fields.hasErrors('email')} ? is-invalid"
+                               id="email" placeholder="Correo" aria-describedby="email-prepend">
                         <div class="invalid-feedback">
-                            <p th:each="error: ${#fields.errors('username')}" th:text="${error}">Dato no válido</p>
+                            <p th:text="${#fields.hasErrors('email') ? #fields.errors('email')[0]:''}">Dato no v&aacute;lido</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="password">Contrase&ntilde;a</label>
-                    <input th:field="*{password}" type="password" class="form-control" id="password" placeholder="Contraseña" required>
+                    <input th:field="*{username}" type="text" class="form-control" th:classappend="${#fields.hasErrors('username')} ? is-invalid"
+                           id="username" placeholder="Usuario">
                     <div class="invalid-feedback">
-                        <p th:each="error: ${#fields.errors('password')}" th:text="${error}">Dato no válido</p>
+                        <p th:text="${#fields.hasErrors('username') ? #fields.errors('username')[0]:''}">Dato no v&aacute;lido</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <input th:field="*{password}" type="password" class="form-control" th:classappend="${#fields.hasErrors('password')} ? is-invalid"
+                           id="password" placeholder="Contraseña">
+                    <div class="invalid-feedback">
+                        <p th:text="${#fields.hasErrors('password') ? #fields.errors('password')[0]:''}">Dato no v&aacute;lido</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <input th:field="*{passwordConfirm}" type="password" class="form-control" th:classappend="${#fields.hasErrors('passwordConfirm')} ? is-invalid"
+                           id="passwordConfirm" placeholder="Confirme contraseña">
+                    <div class="invalid-feedback">
+                        <p th:text="${#fields.hasErrors('passwordConfirm') ? #fields.errors('passwordConfirm')[0]:''}">Dato no v&aacute;lido</p>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck2">
                     <label class="form-check-label" for="invalidCheck2">
                         Agree to terms and conditions
                     </label>
