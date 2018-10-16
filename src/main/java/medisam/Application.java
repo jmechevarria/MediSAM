@@ -2,7 +2,7 @@ package medisam;
 
 //import nz.net.ultraq.thymeleaf.LayoutDialect;
 //import nz.net.ultraq.thymeleaf.decorators.strategies.GroupingStrategy;
-import medisam.entity.UserRepository;
+import medisam.model.UserRepository;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 import nz.net.ultraq.thymeleaf.decorators.strategies.GroupingStrategy;
 import org.slf4j.Logger;
@@ -64,7 +64,6 @@ public class Application {
 
     @Bean
     public InternalResourceViewResolver jspResolver() {
-        System.out.println("jspjspjspjspjspjspjspjspjspjspjspjspjspjspjspjspjspjspjspjspjspjspjspjspjspjspjspjspjspjsp");
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
         resolver.setPrefix("classpath:/templates/");
         resolver.setSuffix(".jsp");

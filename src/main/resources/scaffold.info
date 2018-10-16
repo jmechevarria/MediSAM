@@ -1,0 +1,5 @@
+package:medisam
+dataBaseName:mydb
+username:root
+password:root
+springVersion:2.x
